@@ -8,10 +8,14 @@ namespace UI.ChatModule
         public static ChatUiObjectsContainer Instance;
     
         public ScrollRect chatScrollRect;
+        public ScrollRect systemChatScrollRect;
+        
         public InputField inputField;
-        public Transform bottomPanel;
+        
         [HideInInspector]
         public Transform contentWithTextsObjects;
+        public Transform bottomPanel;
+        
         public Text systemChatText;
     
         private void Start()

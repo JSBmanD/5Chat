@@ -6,20 +6,19 @@ namespace UI.ChatModule
 {
     public class ChatTabManager : MonoBehaviour
     {
+        public delegate void ChatChanged(int chatId);
+
         private Transform _bottomPanel;
 
-
-        private Transform _contentWithTexts;
-
-        private ScrollRect _scrollRect;
-
         private Button[] _chatButtons;
+
         private GameObject[] _chatTexts;
 
         private int _childCount;
 
+        private Transform _contentWithTexts;
 
-        public delegate void ChatChanged(int chatId);
+        private ScrollRect _scrollRect;
 
         public event ChatChanged ChatTabSelected;
 
@@ -32,12 +31,9 @@ namespace UI.ChatModule
             _bottomPanel = chatUiObjectsContainer.bottomPanel;
 
             _childCount = _contentWithTexts.childCount;
-
             _chatButtons = new Button[_childCount];
             _chatTexts = new GameObject[_childCount];
-
             _chatButtons = _bottomPanel.GetComponentsInChildren<Button>();
-
             _scrollRect = GameObject.Find("Scroll View General").GetComponent<ScrollRect>();
 
             for (var i = 0; i < _childCount; i++)

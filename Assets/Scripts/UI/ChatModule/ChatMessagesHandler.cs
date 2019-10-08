@@ -7,20 +7,24 @@ namespace UI.ChatModule
 {
     public class ChatMessagesHandler : MonoBehaviour
     {
-        private Transform _contentWithTexts;
-        private InputField _inputField;
-
         private List<string> _linesInText;
         private List<string> _linesInSystemText;
+        
         private Text[] _chatTexts;
 
+        private Transform _contentWithTexts;
+        
+        private InputField _inputField;
+        
         private Text _systemChatText;
-        private ScrollRect _scrollRect;
+        
+        private ScrollRect _scrollRectGeneral;
+        private ScrollRect _scrollRectSystem;
 
         private int _linesCount;
+        
         private bool _allowEnter;
-
-
+        
         public delegate void MessageSent(string msgText);
 
         public event MessageSent SendMessageToChat;
@@ -32,7 +36,8 @@ namespace UI.ChatModule
             _inputField = chatUiObjectsContainer.inputField;
             _contentWithTexts = chatUiObjectsContainer.contentWithTextsObjects;
             _systemChatText = chatUiObjectsContainer.systemChatText;
-            _scrollRect = chatUiObjectsContainer.chatScrollRect;
+            _scrollRectSystem = chatUiObjectsContainer.systemChatScrollRect;
+            _scrollRectGeneral = chatUiObjectsContainer.chatScrollRect;
 
             _chatTexts = _contentWithTexts.gameObject.GetComponentsInChildren<Text>(true);
             _linesInText = new List<string>();
@@ -68,7 +73,7 @@ namespace UI.ChatModule
                 textInContainer += finalText;
             }
 
-            _scrollRect.verticalNormalizedPosition = -0.015f;
+            _scrollRectGeneral.verticalNormalizedPosition = -0.015f;
 
             _chatTexts[chatId].text = textInContainer;
         }
@@ -93,7 +98,8 @@ namespace UI.ChatModule
             {
                 textInContainer += finalText;
             }
-            
+
+            _scrollRectSystem.verticalNormalizedPosition = -0.015f;
 
             _systemChatText.text = textInContainer;
         }
